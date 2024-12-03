@@ -1,20 +1,19 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { HelloWorld } from './presentation/components/HelloWorld';
+import { Hero } from './presentation/components/Hero';
 import { NotFound } from './presentation/components/NotFound';
+import { Layout } from './presentation/components/Layout';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={
-          <div className="min-h-screen bg-gray-100">
-            <HelloWorld />
-          </div>
-        } />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </BrowserRouter>
+    <Layout>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Hero />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </Layout>
   );
 }
 

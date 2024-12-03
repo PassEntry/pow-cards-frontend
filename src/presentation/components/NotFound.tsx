@@ -1,16 +1,21 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export const NotFound: React.FC = () => {
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center">
-      <h1 className="text-6xl font-bold text-gray-800 mb-4">404</h1>
-      <p className="text-2xl text-gray-600 mb-8">Page Not Found</p>
-      <a 
-        href="/" 
-        className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+    <div className="flex flex-col items-center justify-center min-h-screen bg-slate-900 px-4">
+      <h1 className="h1 text-slate-100 mb-4" data-aos="fade-up">404</h1>
+      <p className="text-xl text-slate-400 text-center mb-8" data-aos="fade-up" data-aos-delay="200">
+        The page you're looking for doesn't exist or has been moved.
+      </p>
+      <Link 
+        to="/"
+        className="btn text-slate-200 bg-slate-800 hover:bg-slate-700 w-full sm:w-auto"
+        data-aos="fade-up"
+        data-aos-delay="400"
       >
-        Go Home
-      </a>
+        Go back home
+      </Link>
     </div>
   );
 }; 
