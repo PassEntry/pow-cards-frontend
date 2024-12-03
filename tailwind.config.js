@@ -6,9 +6,9 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        inter: ['Inter', 'sans-serif'],
-        'hkgrotesk': ['HKGrotesk', 'sans-serif'],
-        'permanent-marker': ['Permanent Marker', 'cursive'],
+        inter: ['var(--font-inter)'],
+        'hkgrotesk': ['var(--font-hkgrotesk)'],
+        'permanent-marker': ['var(--font-permanent-marker)'],
       },
       fontSize: {
         xs: ['0.75rem', { lineHeight: '1.5' }],

@@ -4,6 +4,12 @@
 @import '@fontsource/inter/700.css';
 @import '@fontsource/permanent-marker/400.css';
 
+:root {
+  --font-inter: 'Inter', sans-serif;
+  --font-permanent-marker: 'Permanent Marker', cursive;
+  --font-hkgrotesk: 'HKGrotesk', sans-serif;
+}
+
 @font-face {
   font-family: 'HKGrotesk';
   src: url('./fonts/HKGrotesk-Medium.woff2') format('woff2');
@@ -23,6 +29,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-inter antialiased bg-white text-slate-800 tracking-tight;
+  }
+}
 
 @layer components {
   .h1 {
