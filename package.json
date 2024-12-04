@@ -21,6 +21,7 @@
     "@types/react-dom": "^18.3.1",
     "aos": "^2.3.4",
     "autoprefixer": "^10.4.20",
+    "buffer": "^6.0.3",
     "postcss": "^8.4.49",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -28,7 +29,22 @@
     "react-scripts": "5.0.1",
     "tailwindcss": "^3.4.15",
     "typescript": "^4.9.5",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "@solana/wallet-adapter-base": "^0.9.23"
+  },
+  "devDependencies": {
+    "assert": "^2.1.0",
+    "crypto-browserify": "^3.12.1",
+    "https-browserify": "^1.0.0",
+    "os-browserify": "^0.3.0",
+    "path-browserify": "^1.0.1",
+    "process": "^0.11.10",
+    "react-app-rewired": "^2.2.1",
+    "stream-browserify": "^3.0.0",
+    "stream-http": "^3.2.0",
+    "url": "^0.11.3",
+    "webpack": "^5.97.0",
+    "zlib-browserify": "^0.0.3"
   },
   "scripts": {
     "start": "react-app-rewired start",
@@ -47,9 +63,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "react-app-rewired": "^2.2.1",
-    "webpack": "^5.97.0"
   }
 }
