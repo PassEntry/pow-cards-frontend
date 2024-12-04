@@ -10,17 +10,17 @@ window.Buffer = Buffer;
 
 function App() {
   return (
-    <WalletContextProvider>
-      <Layout>
-        <BrowserRouter>
+    <BrowserRouter>
+      <WalletContextProvider>
+        <Layout>
           <Routes>
             {routes.map((route) => (
               <Route key={route.path} {...route} />
             ))}
           </Routes>
-        </BrowserRouter>
-      </Layout>
-    </WalletContextProvider>
+        </Layout>
+      </WalletContextProvider>
+    </BrowserRouter>
   );
 }
 
