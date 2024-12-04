@@ -1,6 +1,10 @@
 import React from "react";
+import { useWallet } from '@solana/wallet-adapter-react';
+import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 
 export const Claim: React.FC = () => {
+  const { connected } = useWallet();
+
   return (
     <section>
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -118,9 +122,7 @@ export const Claim: React.FC = () => {
                 </h1>
                 {/* Buttons */}
                 <div className="-m-1.5 max-w-xl mx-auto mb-8">
-                  <button className="btn text-white bg-blue-500 hover:bg-blue-600 group shadow-sm m-1.5">
-                    Connect Wallet
-                  </button>
+                  <WalletMultiButton className="btn text-white bg-blue-500 hover:bg-blue-600 group shadow-sm m-1.5" />
                 </div>
 
                 {/* Subscribe form will be added later */}
