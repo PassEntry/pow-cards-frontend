@@ -1,5 +1,10 @@
 import React from 'react';
 
+// Import images
+import POWCardPhone from '../../assets/images/POWCardPhone.png';
+import greySolana from '../../assets/images/grey-solana.svg';
+import greyPassentry from '../../assets/images/grey-passentry.svg';
+
 export const Hero: React.FC = () => {
   return (
     <section className="relative">
@@ -108,18 +113,27 @@ export const Hero: React.FC = () => {
                 data-aos-delay="400"
               >
                 <div className="inline-flex flex-wrap items-center justify-center -my-2 -mx-4 md:-mx-6">
-                  {/* Logo components will be added later */}
+                  <div className="w-1/2 sm:w-auto flex justify-center py-2 px-4 md:px-6">
+                    <img src={greySolana} width={113} alt="Solana" />
+                  </div>
+                  <div className="w-1/2 sm:w-auto flex justify-center py-2 px-4 md:px-6">
+                    <img src={greyPassentry} width={113} alt="Passentry" />
+                  </div>
                 </div>
               </div>
             </div>
 
             {/* Image */}
-            <div 
-              className="max-w-sm mx-auto md:max-w-none md:absolute md:left-[40rem] md:top-1/2 md:-translate-y-1/2 md:ml-8 lg:ml-20 xl:ml-32"
-              data-aos="fade-left"
-              data-aos-duration="1100"
-            >
-              {/* Image will be added later */}
+            <div className="max-w-sm mx-auto md:max-w-none md:absolute md:left-[40rem] md:top-1/2 md:-translate-y-1/2 md:ml-8 lg:ml-20 xl:ml-32">
+              <div data-aos="fade-left" data-aos-duration="1100">
+              <img 
+                src={POWCardPhone} 
+                className="md:max-w-none" 
+                width={298} 
+                height={601} 
+                alt="POW Card Phone" 
+              />
+              </div>
             </div>
           </div>
         </div>
