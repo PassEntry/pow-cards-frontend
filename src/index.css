@@ -1,26 +1,26 @@
-@import '@fontsource/inter/400.css';
-@import '@fontsource/inter/500.css';
-@import '@fontsource/inter/600.css';
-@import '@fontsource/inter/700.css';
-@import '@fontsource/permanent-marker/400.css';
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/inter/700.css";
+@import "@fontsource/permanent-marker/400.css";
 
 :root {
-  --font-inter: 'Inter', sans-serif;
-  --font-permanent-marker: 'Permanent Marker', cursive;
-  --font-hkgrotesk: 'HKGrotesk', sans-serif;
+  --font-inter: "Inter", sans-serif;
+  --font-permanent-marker: "Permanent Marker", cursive;
+  --font-hkgrotesk: "HKGrotesk", sans-serif;
 }
 
 @font-face {
-  font-family: 'HKGrotesk';
-  src: url('./fonts/HKGrotesk-Medium.woff2') format('woff2');
+  font-family: "HKGrotesk";
+  src: url("./fonts/HKGrotesk-Medium.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'HKGrotesk';
-  src: url('./fonts/HKGrotesk-ExtraBold.woff2') format('woff2');
+  font-family: "HKGrotesk";
+  src: url("./fonts/HKGrotesk-ExtraBold.woff2") format("woff2");
   font-weight: 800;
   font-style: normal;
   font-display: swap;
@@ -61,5 +61,19 @@
     .h2 {
       @apply text-5xl;
     }
+  }
+
+  /* Buttons */
+  .btn,
+  .btn-sm {
+    @apply text-sm font-medium inline-flex items-center justify-center rounded-full leading-5 whitespace-nowrap transition duration-150 ease-in-out;
+  }
+
+  .btn {
+    @apply px-4 py-2;
+  }
+
+  .btn-sm {
+    @apply px-3 py-1.5;
   }
 }
