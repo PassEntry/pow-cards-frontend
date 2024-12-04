@@ -70,7 +70,6 @@ function App() {
       new SafePalWalletAdapter(),
       new AlphaWalletAdapter(),
       new AvanaWalletAdapter(),
-      new BitKeepWalletAdapter(),
       new BitgetWalletAdapter(),
       new BitpieWalletAdapter(),
       new CloverWalletAdapter(),
