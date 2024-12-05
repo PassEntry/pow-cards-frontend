@@ -3,9 +3,22 @@ import { useWallet } from '@solana/wallet-adapter-react';
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 import { Header } from './Header';
 import POWLogo from '../../assets/images/POW.png';
+import { useWalletSignIn } from '../../hooks/useWalletSignIn';
 
 export const Claim: React.FC = () => {
   const { connected } = useWallet();
+  const { signIn, isLoading, error } = useWalletSignIn();
+
+  const handleDownloadPass = async () => {
+    try {
+      const result = await signIn();
+      if (result.verified) {
+        console.log('Successfully verified! Ready to download pass');
+      }
+    } catch (err) {
+      console.error('Failed to sign in:', err);
+    }
+  };
 
   return (
     <>
@@ -145,19 +158,19 @@ export const Claim: React.FC = () => {
                     {connected && (
                       <button 
                         className="btn text-white bg-blue-500 hover:bg-blue-600 group shadow-sm m-1.5 flex items-center"
-                        onClick={() => {
-                          // Add your action here
-                          console.log('Connected wallet action');
-                        }}
+                        onClick={handleDownloadPass}
+                        disabled={isLoading}
                       >
-                        <span>Download pass</span>
+                        <span>{isLoading ? 'Signing...' : 'Download pass'}</span>
                         <span className="tracking-normal text-blue-300 group-hover:translate-x-0.5 transition-transform duration-150 ease-in-out ml-1">
                           →
                         </span>
                       </button>
                     )}
                   </div>
-
+                  {error && (
+                    <p className="text-red-500 mt-2">{error}</p>
+                  )}
                 </div>
               </div>
             </div>
