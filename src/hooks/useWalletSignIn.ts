@@ -31,8 +31,8 @@ Issued At: ${data.issuedAt}`;
       setIsLoading(true);
       setError(null);
 
-      // 1. Get sign-in data from backend
-      const response = await fetch('/api/v1/sign-in/create');
+      // 1. Get sign-in data from backend with publicKey
+      const response = await fetch(`/api/v1/claim/init?publicKey=${publicKey.toBase58()}`);
       if (!response.ok) throw new Error('Failed to get sign-in data');
       
       const signInData: SignInData = await response.json();
@@ -45,7 +45,7 @@ Issued At: ${data.issuedAt}`;
       const signature = await signMessage(encodedMessage);
       
       // 4. Send signature to backend for verification
-      const verifyResponse = await fetch('/api/v1/sign-in/verify', {
+      const verifyResponse = await fetch('/api/v1/claim/wallet-pass', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
