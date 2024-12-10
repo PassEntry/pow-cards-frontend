@@ -49,7 +49,7 @@ interface WalletContextProviderProps {
 
 export const WalletContextProvider: React.FC<WalletContextProviderProps> = ({ children }) => {
   const endpoint = useMemo(() => {
-    const network = (process.env.REACT_APP_SOLANA_NETWORK || 'devnet') as Cluster;
+    const network = ('mainnet-beta') as Cluster;
     return clusterApiUrl(network);
   }, []);
   
