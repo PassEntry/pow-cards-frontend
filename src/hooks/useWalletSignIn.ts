@@ -1,6 +1,7 @@
 import { useWallet } from '@solana/wallet-adapter-react';
 import bs58 from 'bs58';
 import { useState } from 'react';
+import { getConfig } from '../config/environment';
 
 interface SignInData {
   domain: string;
@@ -12,6 +13,7 @@ export const useWalletSignIn = () => {
   const { publicKey, signMessage } = useWallet();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const { apiUrl } = getConfig();
 
   const createSignInMessage = (data: SignInData) => {
     return `${data.domain} wants you to create a POW card with your Solana account:
@@ -32,7 +34,7 @@ Issued At: ${data.issuedAt}`;
       setError(null);
 
       // 1. Get sign-in data from backend with publicKey
-      const response = await fetch(`/api/v1/claim/init?publicKey=${publicKey.toBase58()}`);
+      const response = await fetch(`${apiUrl}/api/v1/claim/init?publicKey=${publicKey.toBase58()}`);
       if (!response.ok) throw new Error('Failed to get sign-in data');
       
       const signInData: SignInData = await response.json();
@@ -45,7 +47,7 @@ Issued At: ${data.issuedAt}`;
       const signature = await signMessage(encodedMessage);
       
       // 4. Send signature to backend for verification
-      const verifyResponse = await fetch('/api/v1/claim/wallet-pass', {
+      const verifyResponse = await fetch(`${apiUrl}/api/v1/claim/wallet-pass`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

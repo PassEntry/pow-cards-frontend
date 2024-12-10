@@ -2,7 +2,6 @@
   "name": "pow-cards-frontend",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3001",
   "dependencies": {
     "@fontsource/inter": "^5.1.0",
     "@fontsource/permanent-marker": "^5.1.0",
