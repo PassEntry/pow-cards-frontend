@@ -1,22 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import { useWallet } from '@solana/wallet-adapter-react';
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 import { Header } from './Header';
 import POWLogo from '../../assets/images/POW.png';
 import { useWalletSignIn } from '../../hooks/useWalletSignIn';
+import { CopyToClipboard } from './CopyToClipboard';
+import { isCompatibleBrowser } from '../../utils/browser';
 
 export const Claim: React.FC = () => {
   const { connected } = useWallet();
-  const { signIn, isLoading, error } = useWalletSignIn();
+  const { signIn, isLoading, error, isSuccess } = useWalletSignIn();
+  const [downloadUrl, setDownloadUrl] = useState<string | null>(null);
 
   const handleDownloadPass = async () => {
     try {
       const result = await signIn();
-      if (result.verified) {
-        console.log('Successfully verified! Ready to download pass');
+      if (result.downloadUrl) {
+        setDownloadUrl(result.downloadUrl);
+        
+        // Only open in new tab if browser is compatible
+        if (isCompatibleBrowser()) {
+          window.open(result.downloadUrl, '_blank');
+        }
       }
     } catch (err) {
-      console.error('Failed to sign in:', err);
+      console.error('Download pass failed');
     }
   };
 
@@ -155,7 +163,7 @@ export const Claim: React.FC = () => {
                   <div className="-m-1.5 max-w-xl mx-auto mb-8 flex items-center justify-center gap-4">
                     <WalletMultiButton className="btn text-white bg-blue-500 hover:bg-blue-600 group shadow-sm m-1.5" />
                     
-                    {connected && (
+                    {connected && !isSuccess && (
                       <button 
                         className="btn text-white bg-blue-500 hover:bg-blue-600 group shadow-sm m-1.5 flex items-center"
                         onClick={handleDownloadPass}
@@ -170,6 +178,18 @@ export const Claim: React.FC = () => {
                   </div>
                   {error && (
                     <p className="text-red-500 mt-2">{error}</p>
+                  )}
+                  {isSuccess && (
+                    <div className="mt-4 flex flex-col items-center gap-4">
+                      <p className="text-green-400"><strong>✨ Your POW Card has been claimed! ✨</strong></p>
+                      <div className="w-full max-w-md">
+                        <CopyToClipboard 
+                          text={downloadUrl || ''} 
+                          displayText="Click to copy download URL"
+                        />
+                      </div>
+                      <p className="text-sm text-slate-400">The link has also been opened in a new tab</p>
+                    </div>
                   )}
                 </div>
               </div>

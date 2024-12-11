@@ -2,6 +2,7 @@ import { useWallet } from '@solana/wallet-adapter-react';
 import bs58 from 'bs58';
 import { useState } from 'react';
 import { getConfig } from '../config/environment';
+import { WalletPassResponse, ApiErrorResponse } from '../types/auth';
 
 interface SignInData {
   domain: string;
@@ -13,6 +14,7 @@ export const useWalletSignIn = () => {
   const { publicKey, signMessage } = useWallet();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [isSuccess, setIsSuccess] = useState(false);
   const { apiUrl } = getConfig();
 
   const createSignInMessage = (data: SignInData) => {
@@ -23,21 +25,26 @@ Nonce: ${data.nonce}
 Issued At: ${data.issuedAt}`;
   };
 
-  const signIn = async () => {
+  const signIn = async (): Promise<WalletPassResponse> => {
     if (!publicKey || !signMessage) {
-      setError('Wallet not connected');
-      return;
+      setError('Please connect your wallet first');
+      throw new Error('Wallet not connected');
     }
 
     try {
       setIsLoading(true);
       setError(null);
+      setIsSuccess(false);
 
       // 1. Get sign-in data from backend with publicKey
       const response = await fetch(`${apiUrl}/api/v1/claim/init?publicKey=${publicKey.toBase58()}`);
-      if (!response.ok) throw new Error('Failed to get sign-in data');
+      const responseData = await response.json();
       
-      const signInData: SignInData = await response.json();
+      if (!response.ok) {
+        throw new Error(responseData.details || responseData.error || 'Failed to initialize');
+      }
+      
+      const signInData: SignInData = responseData;
       
       // 2. Create message to sign
       const message = createSignInMessage(signInData);
@@ -59,13 +66,17 @@ Issued At: ${data.issuedAt}`;
         }),
       });
 
-      if (!verifyResponse.ok) throw new Error('Signature verification failed');
+      const verifyData = await verifyResponse.json();
       
-      // 5. Return the verification result
-      return await verifyResponse.json();
+      if (!verifyResponse.ok) {
+        throw new Error(verifyData.details || verifyData.error || 'Verification failed');
+      }
+      
+      setIsSuccess(true);
+      return verifyData;
 
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to sign in');
+      setError('Error with your request. Please try again or contact support.');
       throw err;
     } finally {
       setIsLoading(false);
@@ -76,5 +87,6 @@ Issued At: ${data.issuedAt}`;
     signIn,
     isLoading,
     error,
+    isSuccess,
   };
 }; 
