@@ -12,8 +12,9 @@ export const Claim: React.FC = () => {
   const handleDownloadPass = async () => {
     try {
       const result = await signIn();
-      if (result.verified) {
-        console.log('Successfully verified! Ready to download pass');
+      if (result.downloadUrl) {
+        // Open the download URL in a new tab
+        window.open(result.downloadUrl, '_blank');
       }
     } catch (err) {
       console.error('Failed to sign in:', err);

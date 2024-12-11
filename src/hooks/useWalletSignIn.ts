@@ -2,6 +2,7 @@ import { useWallet } from '@solana/wallet-adapter-react';
 import bs58 from 'bs58';
 import { useState } from 'react';
 import { getConfig } from '../config/environment';
+import { WalletPassResponse } from '../types/auth';
 
 interface SignInData {
   domain: string;
@@ -23,10 +24,10 @@ Nonce: ${data.nonce}
 Issued At: ${data.issuedAt}`;
   };
 
-  const signIn = async () => {
+  const signIn = async (): Promise<WalletPassResponse> => {
     if (!publicKey || !signMessage) {
       setError('Wallet not connected');
-      return;
+      throw new Error('Wallet not connected');
     }
 
     try {
