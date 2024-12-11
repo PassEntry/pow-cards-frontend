@@ -6,6 +6,7 @@ import POWLogo from '../../assets/images/POW.png';
 import { useWalletSignIn } from '../../hooks/useWalletSignIn';
 import { CopyToClipboard } from './CopyToClipboard';
 import { isCompatibleBrowser } from '../../utils/browser';
+import { Features } from './Features';
 
 export const Claim: React.FC = () => {
   const { connected } = useWallet();
@@ -197,6 +198,7 @@ export const Claim: React.FC = () => {
           </div>
         </div>
       </section>
+      <Features />
     </>
   );
 };
