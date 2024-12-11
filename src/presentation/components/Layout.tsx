@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { Footer } from './Footer';
 
 export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   useEffect(() => {
@@ -14,7 +15,10 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
 
   return (
     <div className="flex flex-col min-h-screen overflow-hidden">
-      {children}
+      <main className="grow">
+        {children}
+      </main>
+      <Footer />
     </div>
   );
 }; 
