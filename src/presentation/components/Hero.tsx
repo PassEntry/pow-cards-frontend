@@ -183,7 +183,9 @@ export const Hero: React.FC = () => {
       <div className="pt-8 md:pt-16">
         <HowItWorks />
         <Features02/>
-        <Cta />
+        <div className="pt-6 md:pt-12">
+          <Cta />
+        </div>
       </div>
     </>
   );
