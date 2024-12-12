@@ -6,6 +6,9 @@ import { Header } from './Header';
 import POWCardPhone from "../../assets/images/POWCardPhone.png";
 import greySolana from "../../assets/images/grey-solana.svg";
 import greyPassentry from "../../assets/images/grey-passentry.svg";
+import { HowItWorks } from "./HowItWorks";
+import Features02 from "./Features02";
+import { Cta } from "./Cta";
 
 export const Hero: React.FC = () => {
   return (
@@ -177,6 +180,11 @@ export const Hero: React.FC = () => {
           </div>
         </div>
       </section>
+      <div className="pt-8 md:pt-16">
+        <HowItWorks />
+        <Features02/>
+        <Cta />
+      </div>
     </>
   );
 };
