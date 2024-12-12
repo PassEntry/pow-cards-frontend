@@ -32,7 +32,7 @@ export default function Features02() {
       bullets: [
         {
           title: "Secure Access",
-          description: "Cryptographically secure tickets that prevent fraud and scalping"
+          description: "Cryptographically secure passes that prevent fraud and scalping"
         },
         {
           title: "Smart Benefits",

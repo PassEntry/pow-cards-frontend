@@ -51,7 +51,7 @@ export const Features: React.FC = () => {
                   </div>
                 </div>
                 <div className="text-slate-500">
-                  Claim your exclusive POW Card by securely signing with your
+                  Claim your exclusive POW Card by securely signing a transaction with your
                   wallet.
                 </div>
               </div>
