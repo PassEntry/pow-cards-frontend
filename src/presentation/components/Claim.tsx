@@ -31,7 +31,7 @@ export const Claim: React.FC = () => {
 
   return (
     <>
-      <Header nav={false} />
+      <Header nav={true} />
       <section>
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="pt-16 md:pt-40">

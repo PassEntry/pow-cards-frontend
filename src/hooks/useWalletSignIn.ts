@@ -11,7 +11,7 @@ interface SignInData {
 }
 
 export const useWalletSignIn = () => {
-  const { publicKey, signMessage } = useWallet();
+  const { publicKey, signMessage, wallet } = useWallet();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -63,6 +63,7 @@ Issued At: ${data.issuedAt}`;
           message,
           publicKey: publicKey.toBase58(),
           signature: bs58.encode(signature),
+          walletType: wallet?.adapter.name || 'generic'
         }),
       });
 

@@ -22,7 +22,18 @@ export const Header: React.FC<HeaderProps> = ({ nav = true }) => {
           {/* Desktop navigation */}
           {nav && (
             <nav className="flex grow">
-              <ul className="flex grow justify-end flex-wrap items-center">
+              <ul className="flex grow justify-end flex-wrap items-center space-x-3">
+                {/* Documentation link */}
+                <li>
+                  <a
+                    href="https://powcards.mintlify.app/introduction"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-sm text-slate-600 hover:text-blue-500 font-medium transition duration-150 ease-in-out"
+                  >
+                    Documentation
+                  </a>
+                </li>
                 <li>
                   <Link 
                     className="btn-sm text-white bg-blue-500 hover:bg-blue-600 group shadow-sm" 
